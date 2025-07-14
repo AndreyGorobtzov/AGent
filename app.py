@@ -8,7 +8,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = "your-secret-key"
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///real_estate.db"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///AGdb.db"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     # Инициализация расширений

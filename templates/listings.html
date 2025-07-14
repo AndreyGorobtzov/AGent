@@ -6,6 +6,7 @@
 <div class="filters">
     <h3>Фильтры</h3>
     <form method="GET">
+        <!-- Поля фильтрации -->
         <div class="form-group">
             <label for="city">Город:</label>
             <input type="text" id="city" name="city" value="{{ request.args.get('city', '') }}">
@@ -20,8 +21,10 @@
                 <input type="number" id="max_price" name="max_price" value="{{ request.args.get('max_price', '') }}">
             </div>
         </div>
-        <button type="submit" class="btn">Применить</button>
-        <a href="{{ url_for('listings') }}" class="btn">Сбросить</a>
+        <div class="filter-buttons">
+            <button type="submit" class="btn btn-apply">Применить</button>
+            <a href="{{ url_for('listings') }}" class="btn btn-reset">Сбросить</a>
+        </div>
     </form>
 </div>
 
