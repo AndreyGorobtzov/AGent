@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Мои объявления</h2>
+
+<div class="filters">
+    <h3>Фильтры</h3>
+    <form method="GET">
+        <div class="form-group">
+            <label for="city">Город:</label>
+            <input type="text" id="city" name="city" value="{{ request.args.get('city', '') }}">
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="min_price">Цена от:</label>
+                <input type="number" id="min_price" name="min_price" value="{{ request.args.get('min_price', '') }}">
+            </div>
+            <div class="form-group">
+                <label for="max_price">Цена до:</label>
+                <input type="number" id="max_price" name="max_price" value="{{ request.args.get('max_price', '') }}">
+            </div>
+        </div>
+        <button type="submit" class="btn">Применить</button>
+        <a href="{{ url_for('listings') }}" class="btn">Сбросить</a>
+    </form>
+</div>
+
+<a href="{{ url_for('add_listing') }}" class="btn">Добавить объявление</a>
+
+<div class="listings">
+    {% for listing in listings %}
+    <div class="listing-card">
+        <h3>{{ listing.title }}</h3>
+        <p><strong>Цена:</strong> {{ listing.price }} ₽</p>
+        <p><strong>Город:</strong> {{ listing.city }}</p>
+        <p><strong>Адрес:</strong> {{ listing.address }}</p>
+        <p><strong>Площадь:</strong> {{ listing.area }} м²</p>
+        <p><strong>Комнат:</strong> {{ listing.rooms }}</p>
+        <p>{{ listing.description|truncate(100) }}</p>
+        <div class="actions">
+            <a href="{{ url_for('edit_listing', id=listing.id) }}" class="btn">Редактировать</a>
+            <a href="{{ url_for('delete_listing', id=listing.id) }}" class="btn btn-danger"
+                onclick="return confirm('Вы уверены?')">Удалить</a>
+        </div>
+    </div>
+    {% else %}
+    <p>У вас пока нет объявлений.</p>
+    {% endfor %}
+</div>
+{% endblock %}

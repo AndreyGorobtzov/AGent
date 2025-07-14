@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{% if listing %}Редактирование{% else %}Добавление{% endif %} объявления</h2>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="title">Название:</label>
+        <input type="text" id="title" name="title" value="{{ listing.title if listing }}" required>
+    </div>
+    <div class="form-group">
+        <label for="price">Цена (₽):</label>
+        <input type="number" step="0.01" id="price" name="price" value="{{ listing.price if listing }}" required>
+    </div>
+    <div class="form-group">
+        <label for="city">Город:</label>
+        <input type="text" id="city" name="city" value="{{ listing.city if listing }}" required>
+    </div>
+    <div class="form-group">
+        <label for="address">Адрес:</label>
+        <input type="text" id="address" name="address" value="{{ listing.address if listing }}">
+    </div>
+    <div class="form-group">
+        <label for="area">Площадь (м²):</label>
+        <input type="number" step="0.1" id="area" name="area" value="{{ listing.area if listing }}">
+    </div>
+    <div class="form-group">
+        <label for="rooms">Количество комнат:</label>
+        <input type="number" id="rooms" name="rooms" value="{{ listing.rooms if listing }}">
+    </div>
+    <div class="form-group">
+        <label for="description">Описание:</label>
+        <textarea id="description" name="description">{{ listing.description if listing }}</textarea>
+    </div>
+    <button type="submit" class="btn">Сохранить</button>
+    <a href="{{ url_for('listings') }}" class="btn">Отмена</a>
+</form>
+{% endblock %}

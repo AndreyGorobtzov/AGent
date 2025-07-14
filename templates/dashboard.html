@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Добро пожаловать, {{ current_user.name }}!</h2>
+
+<div class="stats">
+    <div class="stat-card">
+        <h3>Всего объявлений</h3>
+        <p>{{ total_listings }}</p>
+    </div>
+    <div class="stat-card">
+        <h3>Средняя цена</h3>
+        <p>{{ avg_price }} ₽</p>
+    </div>
+</div>
+
+<h3>Топ городов</h3>
+<ul class="top-cities">
+    {% for city, count in top_cities %}
+    <li>{{ city }}: {{ count }} объявлений</li>
+    {% else %}
+    <li>Нет данных о городах</li>
+    {% endfor %}
+</ul>
+
+<a href="{{ url_for('listings') }}" class="btn">Мои объявления</a>
+<a href="{{ url_for('add_listing') }}" class="btn">Добавить объявление</a>
+{% endblock %}
