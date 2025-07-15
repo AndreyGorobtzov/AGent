@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from extensions import db, login_manager
 from models import User, Listing
-from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
 
 
