@@ -228,5 +228,6 @@ nav a {
     .filters .btn {
         width: 100%;
         margin-bottom: 10px;
+        text-align: center;
     }
 }
